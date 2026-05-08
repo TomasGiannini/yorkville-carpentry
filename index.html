@@ -545,6 +545,89 @@
       margin-right: 0.6rem;
     }
 
+    /* ═══════════════════════ GALLERY ═══════════════════════ */
+
+    .gallery {
+      position: relative;
+      z-index: 2;
+      padding: 8rem 4.5rem;
+      background: var(--bg-3);
+      border-top: 1px solid var(--accent-line);
+    }
+
+    .gallery-hd {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .gallery-title {
+      font-family: var(--ff);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .gallery-note {
+      font-family: var(--ff2);
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: #fff;
+      max-width: 28rem;
+      line-height: 1.9;
+      align-self: end;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 280px);
+      gap: 1px;
+      background: var(--accent-line);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.5s;
+      filter: grayscale(0.25) brightness(0.85);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0) brightness(1);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 50%);
+      pointer-events: none;
+      opacity: 0.7;
+      transition: opacity 0.5s;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 0.3;
+    }
+
+    .gallery-item:nth-child(1) { grid-row: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+
     /* ═══════════════════════ CONTACT ═══════════════════════ */
 
     .contact-section {
@@ -809,6 +892,8 @@
     @media (max-width: 860px) {
       .about-grid { grid-template-columns: 1fr; gap: 4rem; }
       .services-header { grid-template-columns: 1fr; }
+      .gallery-hd { grid-template-columns: 1fr; }
+      .gallery-note { display: none; }
       .contact-hd { grid-template-columns: 1fr; }
       .contact-note { display: none; }
     }
@@ -833,6 +918,14 @@
 
       .contact-section { padding: 5rem 1.6rem; }
       .contact-grid { grid-template-columns: 1fr; }
+
+      .gallery { padding: 5rem 1.6rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 240px);
+      }
+      .gallery-item:nth-child(1) { grid-row: span 1; }
+      .gallery-item:nth-child(4) { grid-column: span 1; }
 
       .cta-section { padding: 6rem 1.6rem; }
 
@@ -862,6 +955,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="mailto:info@yorkvilleinc.ca" class="nav-cta">Contact Us</a>
@@ -957,6 +1051,36 @@
     </div>
   </section>
 
+  <!-- ── GALLERY ──────────────────────────── -->
+  <section class="gallery" id="gallery">
+    <div class="gallery-hd">
+      <div>
+        <div class="section-label reveal">Our Work</div>
+        <h2 class="gallery-title reveal">Recent<br>Projects</h2>
+      </div>
+      <p class="gallery-note reveal">
+        A selection of custom carpentry, cabinetry, and wood finishing work completed for clients across the Greater Toronto Area.
+      </p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" style="transition-delay:0s">
+        <img src="img-work1.png" alt="Custom carpentry project" loading="lazy">
+      </div>
+      <div class="gallery-item reveal" style="transition-delay:0.1s">
+        <img src="img-work2.png" alt="Interior wood finishing" loading="lazy">
+      </div>
+      <div class="gallery-item reveal" style="transition-delay:0.2s">
+        <img src="img-work3.jpg" alt="Custom cabinetry work" loading="lazy">
+      </div>
+      <div class="gallery-item reveal" style="transition-delay:0.3s">
+        <img src="img-work4.jpg" alt="Wood restoration project" loading="lazy">
+      </div>
+      <div class="gallery-item reveal" style="transition-delay:0.4s">
+        <img src="img-work5.jpeg" alt="Custom TV wall unit" loading="lazy">
+      </div>
+    </div>
+  </section>
+
   <!-- ── CONTACT ──────────────────────────── -->
   <section class="contact-section" id="contact">
     <div class="contact-hd">
@@ -1004,6 +1128,7 @@
       <li><a href="#">Home</a></li>
       <li><a href="#about">About Us</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="footer-right">
